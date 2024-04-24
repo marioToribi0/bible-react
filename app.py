@@ -1,4 +1,4 @@
-from interface.interface import interface_assistant
+from bible_react.interface.interface import interface_assistant
 import asyncio
 from dotenv import load_dotenv
 import warnings

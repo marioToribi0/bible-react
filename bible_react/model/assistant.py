@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
-from model.tools import tools
+from bible_react.model.tools import tools
 from langchain_core.prompts import ChatPromptTemplate
 import datetime
 from langchain.agents import (
