@@ -35,6 +35,8 @@ Agente de la Biblia basado en IA generativa. Este agente es capaz de consultar l
 
 1. La aplicación realiza consultas a la biblia y citaciones.
 2. Al realizar una consulta el agente identifica qué deberías leer y lo coloca en tu lectura.
+3. El agente es capaz de recordar tus conversaciones y lecturas.
+
 ![alt text](static/img/image_2.png)
 
 ## :rocket: Tecnologías ##
