@@ -1,11 +1,8 @@
 from dotenv import load_dotenv
-from langchain_core.prompts import PromptTemplate
-from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from model.tools import tools
 from langchain_core.prompts import ChatPromptTemplate
 import datetime
-from dotenv import load_dotenv
 from langchain.agents import (
     AgentExecutor,
     create_react_agent,
@@ -55,7 +52,6 @@ chat_history: {chat_history}
 )
 prompt = template
 model = ChatOpenAI(model="gpt-4-1106-preview")
-# model = ChatGoogleGenerativeAI(model="gemini-pro")
 agent = create_react_agent(model, tools, prompt)
 agent_executor = AgentExecutor(
     agent=agent, tools=tools, verbose=True, handle_parsing_errors=True
@@ -86,11 +82,5 @@ async def generate_response(**kwargs):
                 start_message = 1
             if content.strip() == ":" and start_message == 1:
                 start_message = 2
-            # if "Answer:" in content:
-            #     start_message = 2
-            #     yield content.split("Answer:")[1]
-            # elif content and start_message==2:
-            #     yield content
-            # print(content)
-            # yield content
+
     

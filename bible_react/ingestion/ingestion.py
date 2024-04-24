@@ -6,7 +6,7 @@ from langchain_pinecone import PineconeVectorStore
 import os
 
 def load_bible(all_bible=False) -> pd.DataFrame:
-    tree = ET.parse('./rag_intro/static/data/reina_valera_bible.xml')
+    tree = ET.parse('./bible_react/static/data/reina_valera_bible.xml')
     root = tree.getroot()
     books = []
     chapters = []
