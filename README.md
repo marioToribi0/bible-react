@@ -9,13 +9,13 @@
 <h1 align="center">Biblia RAG</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/bible_react?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/mariotoribi0/bible_react?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{YOUR_GITHUB_USERNAME}}/bible_react?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/mariotoribi0/bible_react?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/{{YOUR_GITHUB_USERNAME}}/bible_react?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mariotoribi0/bible_react?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/{{YOUR_GITHUB_USERNAME}}/bible_react?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/mariotoribi0/bible_react?color=56BEB8">
 
 </p>
 
@@ -34,24 +34,24 @@
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
   <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
+  <a href="https://github.com/mariotoribi0" target="_blank">Author</a>
 </p>
 
 <br>
 
-## :dart: About ##
+## :dart: Acerca del proyecto ##
 
 Agente de la Biblia basado en IA generativa. Este agente es capaz de consultar la biblia a través de diferentes query. Con este conocimiento te da respuestas basadas en versículos, realiza citaciones y te coloca en la página de la lectura que te está explicando.
 
-## :rocket: Technologies ##
+## :rocket: Tecnologías ##
 
 Las siguientes herramientas fueron utilizadas en el proyecto:
 
-- [Python]
-- [Langchain]
-- [Streamlit]
+- Python
+- Langchain
+- Streamlit
 
-## :white_check_mark: Requirements ##
+## :white_check_mark: Requerimientos ##
 
 Antes de iniciar :checkered_flag:, tendrás que tener instalado [Git](https://git-scm.com) y [Docker](https://docs.docker.com/engine/install/ubuntu/).
 Copia el siguiente contenido en un archivo `.env` en la raíz del proyecto, sustituyendo `<tu-valor>` con tus credenciales reales:
@@ -60,7 +60,7 @@ INDEX_NAME=<your-index-pinecone>
 PINECONE_API_KEY=<your-pinecone-api-key>
 OPENAI_API_KEY=<your-openai-api-key>
 ```
-## :checkered_flag: Starting ##
+## :checkered_flag: Inicio ##
 
 ```bash
 # Clone this project
@@ -78,13 +78,13 @@ $ docker run -p 80:80 bible_react
 # The server will initialize in the <http://localhost:3000>
 ```
 
-## :memo: License ##
+## :memo: Licencia ##
 
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+Este proyecto está bajo una licencia del MIT. Para más detalles, leer [LICENSE](LICENSE.md).
 
 
-Made with :heart: by <a href="https://github.com/mariotoribi0" target="_blank">{{YOUR_NAME}}</a>
+Hecho con :heart: por <a href="https://github.com/mariotoribi0" target="_blank">Mario Toribio</a>
 
 &#xa0;
 
-<a href="#top">Back to top</a>
+<a href="#top">Volver a la parte superior</a>
