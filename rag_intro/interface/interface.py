@@ -5,6 +5,10 @@ from langchain_core.messages import AIMessage, HumanMessage
 from concurrent.futures import ThreadPoolExecutor
 from storage.local_storage import get_from_local_storage, set_to_local_storage
 from modules.load_data import get_save_comparison
+from model import agent_bible_find
+from model.agent_bible_find import BOOK_LIST
+import re
+from unidecode import unidecode
 
 executor = ThreadPoolExecutor(max_workers=1)
 
@@ -17,6 +21,7 @@ def load_data():
 def get_local_storage():
     with st.container():
         st.session_state["book"] = get_from_local_storage('book')
+        st.session_state["allow"] = get_from_local_storage('allow')
         st.session_state["toggle"] = get_from_local_storage('toggle')
         st.session_state["chapter"] = get_from_local_storage('chapter')
 
@@ -28,7 +33,7 @@ async def interface_assistant():
     
     bible_data = load_data()
     bible = bible_data["bible"]
-
+    
     # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -62,13 +67,22 @@ async def interface_assistant():
                 text += chunk
                 placeholder.markdown(text)
             response = text
+            
+            try:
+                book, chapter = agent_bible_find.chain.invoke({"input": response}).split(":")[1].split(",")
+                st.session_state["book"] = int(BOOK_LIST.index(unidecode(book).strip()))
+                st.session_state["chapter"] = int(re.search("[0-9]+", chapter).group(0))
+                print(st.session_state["book"])
+                print(st.session_state["chapter"])
+            except Exception as error:
+                print(f"error: {error}")
         # Add assistant response to chat history
         st.session_state.messages.append(AIMessage(content=response))
-    
+
     with st.sidebar:
         st.write("# Leer un versículo")
-        allow = st.toggle("No modificar tu lectura", value=get_save_comparison(st.session_state.get("allow"), None, False))
-        st.session_state["allow"] = allow
+        # # allow = st.toggle("No modificar tu lectura", value=get_save_comparison(st.session_state.get("allow"), None, False))
+        # st.session_state["allow"] = allow
 
         book = st.selectbox("Libro", bible_data["books"], index=get_save_comparison(st.session_state.get("book"), None, 0))
         st.session_state["book"] = bible_data["books"].index(book)
@@ -86,5 +100,4 @@ async def interface_assistant():
         set_to_local_storage("allow", st.session_state["allow"])
         set_to_local_storage("book", st.session_state["book"])
         set_to_local_storage("chapter", st.session_state["chapter"])
-
 
