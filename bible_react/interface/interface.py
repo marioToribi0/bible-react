@@ -27,8 +27,6 @@ def get_local_storage():
 
 async def interface_assistant():
     # Streamed response emulator
-    st.set_page_config("Biblia", page_icon="📙", layout="wide")
-    st.title("Biblia 📙")
     get_local_storage()
     
     bible_data = load_data()
@@ -100,4 +98,8 @@ async def interface_assistant():
         set_to_local_storage("allow", st.session_state["allow"])
         set_to_local_storage("book", st.session_state["book"])
         set_to_local_storage("chapter", st.session_state["chapter"])
+        try:
+            set_to_local_storage("PASSWORD", st.session_state["PASSWORD"])
+        except Exception as error:
+            print(f"error: {error}")
 
