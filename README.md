@@ -72,7 +72,7 @@ $ docker build -t bible_react .
 # Run the project
 $ docker run -p 80:80 bible_react
 
-# The server will initialize in the <http://localhost:3000>
+# The server will initialize in the <http://localhost:80>
 ```
 
 ## :memo: Licencia ##
