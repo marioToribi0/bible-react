@@ -55,6 +55,7 @@ Copia el siguiente contenido en un archivo `.env` en la raíz del proyecto, sust
 INDEX_NAME=<your-index-pinecone>
 PINECONE_API_KEY=<your-pinecone-api-key>
 OPENAI_API_KEY=<your-openai-api-key>
+PASSWORD=<your-password>
 ```
 ## :checkered_flag: Inicio ##
 
