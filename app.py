@@ -1,8 +1,8 @@
-from interface.interface import interface_assistant
+from bible_react.interface.interface import interface_assistant
 import asyncio
 import streamlit as st
 from dotenv import load_dotenv
-from storage.local_storage import get_from_local_storage
+from bible_react.storage.local_storage import get_from_local_storage
 import hmac
 import os
 

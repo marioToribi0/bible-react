@@ -1,12 +1,12 @@
 import streamlit as st
-from model.assistant import generate_response
-from ingestion.ingestion import load_bible
+from bible_react.model.assistant import generate_response
+from bible_react.ingestion.ingestion import load_bible
 from langchain_core.messages import AIMessage, HumanMessage
 from concurrent.futures import ThreadPoolExecutor
-from storage.local_storage import get_from_local_storage, set_to_local_storage
-from modules.load_data import get_save_comparison
-from model import agent_bible_find
-from model.agent_bible_find import BOOK_LIST
+from bible_react.storage.local_storage import get_from_local_storage, set_to_local_storage
+from bible_react.modules.load_data import get_save_comparison
+from bible_react.model import agent_bible_find
+from bible_react.model.agent_bible_find import BOOK_LIST
 import re
 from unidecode import unidecode
 
