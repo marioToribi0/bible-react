@@ -1,0 +1,1 @@
+PHRASES = ["Interesante...", "Dame un segundo...", "Ok, ok", "Buena pregunta..."]

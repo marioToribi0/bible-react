@@ -7,6 +7,8 @@ from bible_react.storage.local_storage import get_from_local_storage, set_to_loc
 from bible_react.modules.load_data import get_save_comparison
 from bible_react.model import agent_bible_find
 from bible_react.model.agent_bible_find import BOOK_LIST
+from bible_react.static.config.config import PHRASES
+import random
 import re
 from unidecode import unidecode
 
@@ -63,13 +65,12 @@ async def interface_assistant():
         # Display user message in chat message container
         with st.chat_message("Human"):
             st.markdown(prompt)
-
+        
         # Display assistant response in chat message container
         with st.chat_message("AI"):
             text = ""
             placeholder = st.empty()
-
-            # async for chunk in generate_response(prompt=prompt, chat_history=st.session_state.messages):
+            
             async for chunk in generate_response(
                 **{"prompt": prompt, "chat_history": st.session_state.messages}
             ):
