@@ -1,8 +1,11 @@
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
-from model.tools import tools
 from langchain_core.prompts import ChatPromptTemplate
 import datetime
+from langchain_pinecone import PineconeVectorStore
+from langchain.agents import tool
+from langchain_openai import OpenAIEmbeddings
+import os
 from langchain.agents import (
     AgentExecutor,
     create_react_agent,
@@ -53,7 +56,31 @@ chat_history: {chat_history}
 
 async def generate_response(**kwargs):
     prompt = template
-    model = ChatOpenAI(model="gpt-4-1106-preview", api_key=kwargs.get("api_key"))
+    api_key = kwargs.get("api_key")
+    model = ChatOpenAI(model="gpt-4-1106-preview", api_key=api_key)
+
+    embeddings = OpenAIEmbeddings(api_key=kwargs.get("api_key"))
+
+    @tool
+    def find_vers(query: str):
+        """Buscar versiculos de la biblia a partir de un query. Usa palabras en especifico no preguntas, esto busca coincidencia de palabras con versiculos por lo que deberás tomar palabras correctas para llegar a la informacion que necesitas.
+    
+
+        Args:
+            query (str): texto a buscar en la biblia
+
+        Returns:
+            str: versiculos
+        """
+        vectorstore = PineconeVectorStore(
+                index_name=os.environ["INDEX_NAME"], embedding=embeddings
+            )
+
+        context = vectorstore.similarity_search(query)
+        return context
+
+    tools = [find_vers]
+
     agent = create_react_agent(model, tools, prompt)
     agent_executor = AgentExecutor(
         agent=agent, tools=tools, verbose=True, handle_parsing_errors=True
