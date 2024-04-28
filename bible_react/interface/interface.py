@@ -19,12 +19,22 @@ def load_data():
             "books": bible["Book"].value_counts(sort=False).index.to_list()}
 
 def get_local_storage():
-    with st.container():
-        st.session_state["book"] = get_from_local_storage('book')
-        st.session_state["allow"] = get_from_local_storage('allow')
-        st.session_state["toggle"] = get_from_local_storage('toggle')
-        st.session_state["chapter"] = get_from_local_storage('chapter')
-
+    st.session_state["book"] = get_from_local_storage('book')
+    st.session_state["allow"] = get_from_local_storage('allow')
+    st.session_state["toggle"] = get_from_local_storage('toggle')
+    st.session_state["chapter"] = get_from_local_storage('chapter')
+    st.markdown(
+    """
+    <style>
+        .element-container:has(
+            iframe[title="streamlit_javascript.streamlit_javascript"]
+        ) {
+            display: none
+        }
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
 async def interface_assistant():
     # Streamed response emulator
     st.set_page_config("Biblia", page_icon="📙", layout="wide")
@@ -34,6 +44,9 @@ async def interface_assistant():
     bible_data = load_data()
     bible = bible_data["bible"]
     
+    with st.sidebar:
+        api_key = st.text_input("OPENAI API KEY")
+
     # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -62,14 +75,14 @@ async def interface_assistant():
 
             # async for chunk in generate_response(prompt=prompt, chat_history=st.session_state.messages):
             async for chunk in generate_response(
-                **{"prompt": prompt, "chat_history": st.session_state.messages}
+                **{"prompt": prompt, "chat_history": st.session_state.messages, "api_key": api_key}
             ):
                 text += chunk
                 placeholder.markdown(text)
             response = text
             
             try:
-                book, chapter = agent_bible_find.chain.invoke({"input": response}).split(":")[1].split(",")
+                book, chapter = agent_bible_find.invoke_response({"input": response}, api_key=api_key).split(":")[1].split(",")
                 st.session_state["book"] = int(BOOK_LIST.index(unidecode(book).strip()))
                 st.session_state["chapter"] = int(re.search("[0-9]+", chapter).group(0))
                 print(st.session_state["book"])

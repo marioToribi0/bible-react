@@ -36,10 +36,10 @@ Observation: the result of the action
 
 When you have a response to say to the Human, or if you do not need to use a tool, you MUST use the format:
 
-```
+
 Thought: Do I need to use a tool? No
 Final Answer: [your response here]
-```
+
 
 Begin!
 
@@ -50,14 +50,15 @@ chat_history: {chat_history}
 {agent_scratchpad}
 """
 )
-prompt = template
-model = ChatOpenAI(model="gpt-4-1106-preview")
-agent = create_react_agent(model, tools, prompt)
-agent_executor = AgentExecutor(
-    agent=agent, tools=tools, verbose=True, handle_parsing_errors=True
-)
 
 async def generate_response(**kwargs):
+    prompt = template
+    model = ChatOpenAI(model="gpt-4-1106-preview", api_key=kwargs.get("api_key"))
+    agent = create_react_agent(model, tools, prompt)
+    agent_executor = AgentExecutor(
+        agent=agent, tools=tools, verbose=True, handle_parsing_errors=True
+    )
+
     question = kwargs.get("prompt", None)
     current_time = datetime.datetime.now().strftime("%H:%M:%S %d/%m/%Y")
     chat_history = kwargs.get("chat_history", [])[-6:]

@@ -26,11 +26,15 @@ input: {input}
 """
 )
 
-model = ChatOpenAI(
-    model="gpt-3.5-turbo-0125",
-    callbacks=[StreamingStdOutCallbackHandler()],
-)
-prompt = template
+def invoke_response(input: dict, api_key: str):
+    model = ChatOpenAI(
+        model="gpt-3.5-turbo-0125",
+        callbacks=[StreamingStdOutCallbackHandler()],
+        api_key=api_key
+    )
+    prompt = template
 
-output_parser = StrOutputParser()
-chain = prompt | model | output_parser
+    output_parser = StrOutputParser()
+    chain = prompt | model | output_parser
+    
+    return chain.invoke(input)
