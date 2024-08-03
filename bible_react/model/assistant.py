@@ -36,10 +36,8 @@ Observation: the result of the action
 
 When you have a response to say to the Human, or if you do not need to use a tool, you MUST use the format:
 
-```
 Thought: Do I need to use a tool? No
 Final Answer: [your response here]
-```
 
 Begin!
 
@@ -51,7 +49,7 @@ chat_history: {chat_history}
 """
 )
 prompt = template
-model = ChatOpenAI(model="gpt-4-1106-preview")
+model = ChatOpenAI(model="gpt-4o-mini")
 agent = create_react_agent(model, tools, prompt)
 agent_executor = AgentExecutor(
     agent=agent, tools=tools, verbose=True, handle_parsing_errors=True

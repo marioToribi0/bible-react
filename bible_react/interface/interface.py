@@ -19,11 +19,22 @@ def load_data():
             "books": bible["Book"].value_counts(sort=False).index.to_list()}
 
 def get_local_storage():
-    with st.container():
-        st.session_state["book"] = get_from_local_storage('book')
-        st.session_state["allow"] = get_from_local_storage('allow')
-        st.session_state["toggle"] = get_from_local_storage('toggle')
-        st.session_state["chapter"] = get_from_local_storage('chapter')
+    st.session_state["book"] = get_from_local_storage('book')
+    st.session_state["allow"] = get_from_local_storage('allow')
+    st.session_state["toggle"] = get_from_local_storage('toggle')
+    st.session_state["chapter"] = get_from_local_storage('chapter')
+    st.markdown(
+    """
+    <style>
+        .element-container:has(
+            iframe[title="streamlit_javascript.streamlit_javascript"]
+        ) {
+            display: none
+        }
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
 
 async def interface_assistant():
     # Streamed response emulator

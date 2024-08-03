@@ -24,6 +24,6 @@ def find_vers(query: str):
         )
 
     context = vectorstore.similarity_search(query)
-    return context
+    return f"\n{context}\n"
 
 tools = [find_vers]
