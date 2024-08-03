@@ -9,13 +9,13 @@
 <h1 align="center">Biblia RAG</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/mariotoribi0/bible_react?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/mariotoribi0/bible-react?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/mariotoribi0/bible_react?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/mariotoribi0/bible-react?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mariotoribi0/bible_react?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mariotoribi0/bible-react?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/mariotoribi0/bible_react?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/mariotoribi0/bible-react?color=56BEB8">
 
 </p>
 
